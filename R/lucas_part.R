@@ -17,6 +17,21 @@ getNode<-function(index,handle){
 	return(contents)
 }	
 
+createRelationship<-function(start,end,type,properties=NULL,handle){
+		to<-paste(handle$db$node,"/",end,sep='')
+		type<-type
+		if(!is.null(properties)){
+			data<-properties
+			relationship<-list(to=to,type=type,data=data)
+		}
+		else{
+			relationship<-list(to=to,type=type)
+		}
+		relationship<-toJSON(relationship)
+		serverReturns<-getURL(paste(handle$db$node,"/",start,"/relationships",sep=''),postfields=relationship,httpheader="Content-type:application/json",customrequest="POST",userpwd=handle$auth)
+		cat(paste("Server Retuns:",serverReturns))
+}
+
 buildAdjMatrix<-function(graphdb){
 	i<-1
 	allnodes<-vector("list")
@@ -62,6 +77,8 @@ someNode<-list(name="john",last_name="doe",institution="Stanford",degree="Statis
 createNode(someNode,handle)
 
 someNodeFromDb<-getNode(349,handle)
+
+createRelationship(349,351,type="Knows",handle=handle)
 
 adjMatrix<-buildAdjMatrix(handle) ##This takes a minute or so to run with the movie DB
 
