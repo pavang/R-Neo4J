@@ -45,3 +45,23 @@ buildAdjMatrix<-function(graphdb){
 }
 		
 	
+library("RCurl")
+library("RJSONIO")
+library("sna")
+	
+username<-"finalproj_test"
+pwd<-"VD8XYRgY8SwO4RdCEKqc"
+dburl<-"http://finalprojtest.sb01.stations.graphenedb.com"
+port<-24789
+
+handle<-connectGraphDb(dburl,port,username,pwd)
+
+someNode<-list(name="john",last_name="doe",institution="Stanford",degree="Statistics")
+
+createNode(someNode,handle)
+
+someNodeFromDb<-getNode(349,handle)
+
+adjMatrix<-buildAdjMatrix(handle) ##This takes a minute or so to run with the movie DB
+
+gplot(adjMatrix)
