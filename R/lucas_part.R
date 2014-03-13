@@ -7,7 +7,8 @@ connectGraphDb<-function(dburl,port,usr,pwd){
 
 createNode<-function(contents,handle){
 	jsonContents<-toJSON(contents)	
-	getURL(paste(handle$db$node),postfields=jsonContents,httpheader="Content-type:application/json",customrequest="POST",userpwd=handle$auth)
+	getURL(paste(handle$db$node),postfields=jsonContents,httpheader="Content-type:application/json",
+	customrequest="POST",userpwd=handle$auth)
 }
 
 getNode<-function(index,handle){
