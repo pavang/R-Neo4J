@@ -1,0 +1,11 @@
+Package: RNeo4j
+Type: Package
+Title: R wrapper for Neo4j graph database REST API
+Description: Provides utilities for creating, retrieving and manipulating graphs on Neo4j using familiar R objects. 
+Version: 0.1
+Authors: c(person("Lucas", "Nogueira", role = c("aut","cre"), email =
+        "lucasn@stanford.edu"), person("Kranthi", "Gandrapu", role =
+        c("aut","cre"), email = "kagandrapu@stanford.edu"))
+Maintainers: Lucas Nogueira <lucasn@stanford.edu>
+Depends: R (>= 2.15.3), RCurl, RJSONIO, sna
+License: GPL-2
