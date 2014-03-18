@@ -58,7 +58,7 @@ executeCypherQueryJSON <- function(db,json=""){
 }
 
 db<-connectGraphDb("http://finalprojtest.sb01.stations.graphenedb.com",24789,"finalproj_test","VD8XYRgY8SwO4RdCEKqc")
-traverse<-graphTraverse(db,startNode=52,retPropName="name")
+graphTraverse(db,startNode=52,retPropName="name")
 executeCypherStartQuery(db=db,startNode=15,returnProp="tagline")
 executeCypherMatchQuery(db=db,nodeName="Person")
 executeCypherMatchWhereQuery(db=db,nodeName="Person",whereCond="born",whereVal=1971)
