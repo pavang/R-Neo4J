@@ -1,20 +1,29 @@
-#' This function generates a plot depicting a graph, or a subgraph, from a Neo4j database.
-#' @param subgraph Numeric vector. The indices of the nodes to include in the plot.
-#' @param legend Boolean. Whether or not to produce a legend for the plot.
-#' @param handle The handle on the Neo4j database as created by connectGraphDb().
-#' @param ... Additional arguments to both 'gplot' and 'legend'. Defaults to TRUE.
-#' @Details The most plot possible is one of a graph without any or with only a single label. In this case, the default colour is red. In case of multiple labels, plotNeo4j will print all nodes with different labels using different colours. The format of the nodes, as well as that of the edges might be changed by using '...' to control the underlying call to gplot.
+#' This function creates a database handle that can be passed as an
+#' argument to several other functions in this package.
+#' Output is a named list with the Neo4j base URL relative to the specidied server.
+#' @param dburl The (http) URL of the host to which you wish to connect.
+#' @param port The port on the host where a Neo4j instance is running. 
+#' @param usr  A character string with a valid user name for the specified Neo4j database.
+#' @param pwd The database's REST password.
+#' @details The function execution will stop if authentication on the server fails. However, it will not specify the reason, since Neo4j server does not return this information.
+#' @value a named list containing several URLs, relevant for REST manipulation of Neo4j objects, and an authentication string.
 #' @keywords graph
 #' @export
 #' @examples
 #' \dontrun{
-#' plotNeo4j(neo4j_handle)
+#' username<-"finalproj_test"
+#' pwd<-"VD8XYRgY8SwO4RdCEKqckwkw"
+#' dburl<-"http://finalprojtest.sb01.stations.graphenedb.com"
+#' port<-24789
+#' neo4j_handle <- connectGraphDb(dburl,port,username,pwd)
+#' getNode(100,neo4j_handle)
 #' }
 
-plotNeo4j<-function(handle,subgraph=NULL,legend=TRUE,...){
-	print_isolates<-ifelse(!is.null(subgraph),FALSE,TRUE)
-	graph_to_plot<-buildAdjMatrix(handle,subgraph)
-	gplot(graph_to_plot$adjMatrix,edge.col=8,vertex.col=graph_to_plot$labels,displayisolates=print_isolates)
-	labels<-attr(graph_to_plot$labels,"levels")
-	legend("bottomleft",title="Label",legend=labels,col=seq(1:length(labels)),pch=21,pt.bg=seq(1:length(labels)))
+connectGraphDb<-function(dburl,port,usr,pwd){
+	auth<-paste(usr,":",pwd,sep='')
+	baseurl<-paste(dburl,":",port,"/db/data/",sep="")
+	db<-getURL(paste(baseurl),userpwd=paste(auth))
+	cat(paste("Server returned:",db))
+	if(!isValidJSON(db,TRUE))stop("Can't authenticate on server. Please check if you used correct username, password and port")
+	return(list(db=fromJSON(db),auth=auth))
 }
