@@ -63,4 +63,9 @@ executeCypherStartQuery(db=db,startNode=15,returnProp="tagline")
 executeCypherMatchQuery(db=db,nodeName="Person")
 executeCypherMatchWhereQuery(db=db,nodeName="Person",whereCond="born",whereVal=1971)
 
+createNode(list(name="John",lastname="Doe"),label="Person",handle=db)
+getNode(300)
+createRelationship(1,330,"test",handle=db)
+getRelationships(330,handle=db)
+plotNeo4j(handle=db) ##This may take a few minutes for the movie graph example
 
