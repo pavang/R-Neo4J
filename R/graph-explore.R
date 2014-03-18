@@ -86,7 +86,7 @@ executeCypherMatchQuery <- function(db,nodeName){
 #' @export
 #' @examples
 #' \dontrun{
-#' executeCypherMatchQuery(db=db,nodeName="Person")
+#' executeCypherMatchWhereQuery(db=db,nodeName="Person",whereCond="born",whereVal=1971)
 #' }
 executeCypherMatchWhereQuery <- function(db,nodeName,whereCond,whereVal){
   h <- basicTextGatherer()
