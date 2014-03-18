@@ -57,7 +57,6 @@ executeCypherStartQuery <- function(db,startNode,returnProp="property"){
 #' Run cypher match query using REST API call. Pass the node name
 #' @param db Database connection details 
 #' @param nodeName  The name of the node
-#' @param returnProp  Return property name of the node
 #' @details The function execution will stop if the node corresponding to the specified index does not exist in the database.
 #' @value Returns all the rows resulting from the match cypher query 
 #' @keywords graph
@@ -78,7 +77,6 @@ executeCypherMatchQuery <- function(db,nodeName){
 #' Run cypher match query using REST API call. Pass the node name
 #' @param db Database connection details 
 #' @param nodeName  The name of the node
-#' @param returnProp  Return property name of the node
 #' @param whereCond  where condition
 #' @param whereVal  Return property name of the node
 #' @details The function execution will stop if the node corresponding to the specified index does not exist in the database.
