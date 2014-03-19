@@ -41,9 +41,11 @@ executeCypherQueryJSON(db, json = "")
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+\dontrun{
 db<-connectGraphDb("http://finalprojtest.sb01.stations.graphenedb.com",24789,"finalproj_test","VD8XYRgY8SwO4RdCEKqc")
 str<-"{\n \"query\": \"start x = node(15) return x.tagline\",\n\"params\": null \n}"
 executeCypherQueryJSON(db,str)
+}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
