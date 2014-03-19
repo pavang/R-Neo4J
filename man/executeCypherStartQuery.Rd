@@ -44,8 +44,10 @@ executeCypherStartQuery(db, startNode, returnProp = "property")
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+\dontrun{
 db<-connectGraphDb("http://finalprojtest.sb01.stations.graphenedb.com",24789,"finalproj_test","VD8XYRgY8SwO4RdCEKqc")
 executeCypherStartQuery(db=db,startNode=15,returnProp="tagline")
+}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
