@@ -47,8 +47,10 @@ executeCypherMatchWhereQuery(db, nodeName, whereCond, whereVal)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+\dontrun{
 db<-connectGraphDb("http://finalprojtest.sb01.stations.graphenedb.com",24789,"finalproj_test","VD8XYRgY8SwO4RdCEKqc")
 executeCypherMatchWhereQuery(db=db,nodeName="Person",whereCond="born",whereVal=1971)
+}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
